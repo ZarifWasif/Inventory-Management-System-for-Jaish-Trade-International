@@ -1,0 +1,46 @@
+<!-- inventory_pdf_template.html -->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Inventory Report</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 5px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <h1>Inventory Report</h1>
+    <table>
+        <colgroup>
+            <col width="5%">
+            <col width="35%">
+            <col width="35%">
+            <col width="25%">
+        </colgroup>
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Product</th>
+                <th>Available Stock</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for product in products %}
+            <tr>
+                <td>{{ forloop.counter }}</td>
+                <td>{{ product.name }}</td> <!-- Assuming product has a 'name' field -->
+                <td>{{ product.count_inventory }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!-- invoice_pdf_template.html -->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Invoice Report</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 5px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <h1>Invoice Report</h1>
+    <table>
+        <colgroup>
+            <col width="5%">
+            <col width="20%">
+            <col width="20%">
+            <col width="20%">
+            <col width="10%">
+            <col width="10%">
+            <col width="15%">
+        </colgroup>
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Date/Time</th>
+                <th>Transaction Code</th>
+                <th>Customer</th>
+                <th>Total Item</th>
+                <th>Total Amount</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for invoice in invoices %}
+            <tr>
+                <td>{{ forloop.counter }}</td>
+                <td>{{ invoice.date_created|date:"Y-m-d h:i A" }}</td>
+                <td>{{ invoice.transaction }}</td>
+                <td>{{ invoice.customer }}</td>
+                <td>{{ invoice.item_count }}</td>
+                <td>{{ invoice.total }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>

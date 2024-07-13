@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Product Report</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 5px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <h1>Product Report</h1>
+    <table>
+        <colgroup>
+            <col width="5%">
+            <col width="15%">
+            <col width="20%">
+            <col width="25%">
+            <col width="10%">
+            <col width="10%">
+            <col width="15%">
+        </colgroup>
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Date/Time</th>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Price</th>
+                <th>Status</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for product in products %}
+            <tr>
+                <td>{{ forloop.counter }}</td>
+                <td>{{ product.date_created|date:"Y-m-d h:i A" }}</td>
+                <td>{{ product.name }}</td>
+                <td>{{ product.description }}</td>
+                <td>{{ product.price }}</td>
+                <td>
+                    {% if product.status == '1' %}
+                    Active
+                    {% else %}
+                    Inactive
+                    {% endif %}
+                </td>
+                <td>
+                    <!-- Actions (Edit/Delete) are typically not needed in the PDF, so they can be omitted -->
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>

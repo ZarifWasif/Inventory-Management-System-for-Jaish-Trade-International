@@ -1,0 +1,58 @@
+<!-- pdf_template.html -->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Category Report</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 5px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <h1>Category Report</h1>
+    <table>
+        <colgroup>
+            <col width="5%">
+            <col width="15%">
+            <col width="20%">
+            <col width="30%">
+            <col width="15%">
+            <col width="15%">
+        </colgroup>
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Date/Time</th>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for category in categories %}
+            <tr>
+                <td>{{ forloop.counter }}</td>
+                <td>{{ category.date_created|date:"Y-m-d h:i A" }}</td>
+                <td>{{ category.name }}</td>
+                <td>{{ category.description }}</td>
+                <td>
+                    {% if category.status == '1' %}
+                    Active
+                    {% else %}
+                    Inactive
+                    {% endif %}
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
